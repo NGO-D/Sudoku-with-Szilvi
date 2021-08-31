@@ -80,12 +80,13 @@ function draw_9x9() {
 
   let initialArray = Array.from(document.querySelectorAll('td'))
   initialArray.forEach(cell => {
-    cell.addEventListener('click', listenSteps)
+    cell.removeEventListener('keyup', listenSteps);
+    cell.addEventListener('keyup', listenSteps)
   })
 }
 
 function listenSteps(e){
-  console.log(e)
+  console.log(e.key)
 }
 
 function clear_input() {
