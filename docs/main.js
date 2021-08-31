@@ -87,6 +87,10 @@ function draw_9x9() {
 
 function listenSteps(e){
   console.log(e.key)
+  let arr = []
+  arr.push(e.key)
+  console.log(arr)
+  document.getElementById('log').innerHTML += arr.join("\n")
 }
 
 function clear_input() {
