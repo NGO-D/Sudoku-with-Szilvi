@@ -2,23 +2,19 @@ const solver = new SudokuSolver();
 
 var time = 0;
 var array = [];
+var currentArray = [];
 var stepCounter;
 
 function solve() {
-<<<<<<< HEAD
-  let s = '';
-  for (let i = 0; i < 81; ++i) {
-    let y = document.getElementById('C' + i).value;
-=======
     let inputArray = this.getJSONInputParseToArray();
     if (inputArray.length < 81) {
         document.getElementById('solvetime').innerHTML = "Sudokus contain 81 fields. Invalid values"
         return;
     }
-  var s = '';
-  for (var i = 0; i < 81; ++i) {
-    var y = document.getElementById('C' + i).value;
->>>>>>> 3ac9323ed73b93f9e43aac69674b3071b051a243
+   let s = '';
+   for (let i = 0; i < 81; ++i) {
+   let y = document.getElementById('C' + i).value;
+   
     if (y >= 1 && y <= 9) {
       s += '' + y;
     } else {
@@ -39,7 +35,7 @@ function solve() {
 }
 
 function set_9x9(str) {
-  displayChangesInArray(str)
+  
   if (str != null && str.length >= 81) {
     for (let i = 0; i < 81; ++i) {
       document.getElementById('C' + i).value = '';
@@ -50,13 +46,14 @@ function set_9x9(str) {
       }
     }
   }
+  // currentArray = [...str].map(el => parseInt(el))
+  // showCurrentArray(currentArray)
+  setListeners()
 }
 
-function displayChangesInArray(str) {
-let nums = +str;
-console.log(nums)
-
-}
+// function showCurrentArray(arr) {
+//   document.getElementById("currArr").innerHTML = `Current values: ${arr}`;
+// }
 
 function draw_9x9() {
   
@@ -96,23 +93,22 @@ function draw_9x9() {
   //   set_9x9('001700509573024106800501002700295018009400305652800007465080071000159004908007053');
   // }
 
- setListeners()
 
 }
 
 function setListeners() {
    let initialArray = Array.from(document.querySelectorAll('td'))
-  initialArray.forEach(cell => {
-    cell.removeEventListener('keyup', listenSteps, false);
-    cell.addEventListener('keyup', listenSteps, false);
+  initialArray.forEach((cell, idx) => {
+    cell.removeEventListener('keyup', listenSteps);
+    cell.addEventListener('keyup', listenSteps);
   })
+
 }
 
 function listenSteps(e){
  stepCounter += 1;
   array.push(e.key)
-  let stepstats = document.getElementById('log').innerHTML = array.join('\n')
-  
+  let insertedNumbers = document.getElementById('log').innerHTML = array
 }
 
 function clear_input() {
@@ -123,15 +119,12 @@ function clear_input() {
 
 function setPredefined() {
       set_9x9('032054900090001004080700031005600027800070000270140005000210300018907652603000000');
-<<<<<<< HEAD
       this.time = new Date().getTime();
       console.log(this.time);
       array = [];
       stepCounter = 0
-=======
      
       //  ["5", "1", "2", "3", "5", "3", "8", "7", "9", "4"]
->>>>>>> 3ac9323ed73b93f9e43aac69674b3071b051a243
       
 }
 
@@ -146,11 +139,9 @@ function timeCounter() {
     
 }
 
-<<<<<<< HEAD
-// fs.writeFile('./stats.json', JSON.stringify(stepstats), err => {
+// fs.writeFile('./stats.json', JSON.stringify(steps), err => {
   // if (err) console.log(err);
   // console.log(`${stepstats} stored.`)})
-=======
 function setOwnSudoku() {
        
         let toNumbers = this.getJSONInputParseToArray();
@@ -198,4 +189,3 @@ function customValuesIntoGridWriter(numbersArray) {
 }
 
 }   
->>>>>>> 3ac9323ed73b93f9e43aac69674b3071b051a243
