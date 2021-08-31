@@ -127,9 +127,12 @@ function timeCounter() {
 function setOwnSudoku() {
        
         let toNumbers = this.getJSONInputParseToArray();
-        this.inputDataChecker(toNumbers);
+        if (!this.inputDataChecker(toNumbers)) {
+            return;
+        } else {
         this.gridCleaner();
-        this.customValuesIntoGridWriter(toNumbers);          
+        this.customValuesIntoGridWriter(toNumbers);  
+        }        
 }         
           
 function getJSONInputParseToArray() {
@@ -146,11 +149,11 @@ function inputDataChecker(data) {
         console.log(true);
     } else {
         console.log(false);
-        // bug...
-        this.gridCleaner();
-        document.getElementById('wrongCharacterAlert').innerHTML = "Use numbers from 0 to 9, please"
+        document.getElementById('wrongCharacterAlert').innerHTML = "Use numbers from 0 to 9, please";
+        return false;
     }
 }
+
 }
 
 function gridCleaner() {
