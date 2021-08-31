@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Sudoku Solver</title>
+  <title>Sudoku</title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script language="javascript" src="index.js"></script>
@@ -98,16 +98,19 @@
 <body onLoad='draw_9x9();'>
 
   <div class="container">
-    <h1 style="padding-bottom: 20px;">Sudoku Solver</h1>
+    <h1 style="padding-bottom: 20px;">Sudoku</h1>
     <div style="text-align: left; padding: 0 20px 20px 20px;">
-     <p>majd ide írunk valamit jól</p>
+     <p>Make your own sudoku puzzle: Fill your own values in JSON format! Numbers from 1 to 9 are to be used, 0 represents empty fields.</p>
+     <p>Hint: ["5", "1", "2", "3", "5", "3", "8", "7", "9", "4"] </p>
+     <input id="userValues" type="text">
+     <input id="userValuesButton" type="button" value="Set" onClick="setOwnSudoku()">
+     <div id="wrongCharacterAlert" style="color: gray; padding-top: 10px;"></div>
     </div>
     <div class="board-block">
       <div style="padding-bottom: 15px;">
-        Puzzles:
-      
-        <input type="button" value="Start" onClick="setPredefined()">
-        <input type="button" value="Finish" onClick="timeCounter()">
+        <input type="button" value="New Game" onClick="setPredefined()">
+        <input type="button" value="Start Timer" onClick="startCounter()">
+        <input type="button" value="Finish Timer" onClick="timeCounter()">
        
       </div>
       <table id='board'>
@@ -122,12 +125,13 @@
           <input type="button" value="Solve" onClick="solve();">
           <input type="button" value="Clear" onClick="clear_input();">
         </div>
-        <div id="runtime" style="color: gray; padding-top: 10px;">
-          Solved puzzle in 0 seconds ( 0 ms ).
-        </div>
         <div id="solvetime" style="color: gray; padding-top: 10px;">
-           puzzle in 0 seconds ( 0 ms ).
-        <div>
+           
+          <div>
+        <div id="runtime" style="color: gray; padding-top: 10px;">
+          
+        </div>
+        
           <p id="log"></p>
         </div>
       </div>
