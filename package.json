@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -15,7 +16,14 @@
     "url": "https://github.com/NGO-D/Sudoku-with-Szilvi/issues"
   },
   "homepage": "https://github.com/NGO-D/Sudoku-with-Szilvi#readme",
-  "devDependencies": {},
-  "dependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "timer-node": "^5.0.5"
+  },
+  "directories": {
+    "doc": "docs"
+  },
   "description": ""
 }

@@ -1,5 +1,7 @@
 var solver = new SudokuSolver();
 
+
+
 function solve() {
   var s = '';
   for (var i = 0; i < 81; ++i) {
@@ -95,6 +97,6 @@ function clear_input() {
 function setPredefined() {
  
       set_9x9('032054900090001004080700031005600027800070000270140005000210300018907652603000000');
-  
+      
 }
 
