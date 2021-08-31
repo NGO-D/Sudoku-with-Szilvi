@@ -1,5 +1,7 @@
-var solver = new SudokuSolver();
 
+
+const solver = new SudokuSolver();
+var time = 0;
 
 
 function solve() {
@@ -83,8 +85,17 @@ function clear_input() {
 }
 
 function setPredefined() {
- 
+    
       set_9x9('032054900090001004080700031005600027800070000270140005000210300018907652603000000');
+      this.time = new Date().getTime();
+      console.log(this.time);
       
+}
+
+function timeCounter() {
+    let amount = (new Date().getTime() - this.time) / 1000.0;
+    document.getElementById('solvetime').innerHTML = 'Solved puzzle in ' + amount + ' seconds ( ' + amount * 1000.0 + ' ms ).';
+  s = '';
+    
 }
 
