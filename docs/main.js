@@ -29,6 +29,7 @@ function solve() {
 }
 
 function set_9x9(str) {
+  console.log(str)
   if (str != null && str.length >= 81) {
     for (var i = 0; i < 81; ++i) {
       document.getElementById('C' + i).value = '';
@@ -60,6 +61,8 @@ function draw_9x9() {
     s += '</tr>\n';
   }
 
+  
+
   s += '</table>';
   document.getElementById('9x9').innerHTML = s;
   var inp = document.URL;
@@ -76,6 +79,20 @@ function draw_9x9() {
   if (!set) {
     set_9x9('001700509573024106800501002700295018009400305652800007465080071000159004908007053');
   }
+
+  let initialArray = Array.from(document.querySelectorAll('td'))
+  initialArray.forEach(cell => {
+    cell.removeEventListener('keyup', listenSteps);
+    cell.addEventListener('keyup', listenSteps)
+  })
+}
+
+function listenSteps(e){
+  console.log(e.key)
+  let arr = []
+  arr.push(e.key)
+  console.log(arr)
+  document.getElementById('log').innerHTML += arr.join("\n")
 }
 
 function clear_input() {

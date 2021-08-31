@@ -5,11 +5,14 @@ function SudokuSolver() {
   * for the given cell (by Sudoku rules).
   */
 	function check_candidate(num, row, col) {
+    
 		for (var i = 0; i < 9; i++) {
 			var b_index = ((Math.floor(row / 3) * 3) + Math.floor(i / 3)) * 9 + (Math.floor(col / 3) * 3) + (i % 3);
 			if (num == puzzle_table[(row * 9) + i] ||
 				num == puzzle_table[col + (i * 9)] ||
 				num == puzzle_table[b_index]) {
+                 console.log(puzzle_table, puzzle_table[(row * 9) + i], puzzle_table[col + (i * 9)], puzzle_table[b_index] ) 
+                 console.log(num, row, col, b_index)
 				return false;
 			}
 		}
@@ -46,6 +49,7 @@ function SudokuSolver() {
 		for (var i = 0; i < arr.length; i += 9) {
 			result.push(arr.slice(i, i + 9));
 		}
+        console.log(result)
 		return result;
 	}
   /*
@@ -54,6 +58,7 @@ function SudokuSolver() {
 	this.solve = function (puzzle, options) {
 		options = options || {};
 		var result = options.result || 'string';
+        console.log(puzzle, options)
 		puzzle_table = puzzle.split('').map(function (v) { return isNaN(v) ? 0 : +v });
 
 		if (puzzle.length !== 81) return 'Puzzle is not valid.'
