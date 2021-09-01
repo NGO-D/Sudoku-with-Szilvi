@@ -122,10 +122,7 @@ function setPredefined() {
       this.time = new Date().getTime();
       console.log(this.time);
       array = [];
-      stepCounter = 0
-     
-      //  ["5", "1", "2", "3", "5", "3", "8", "7", "9", "4"]
-      
+      stepCounter = 0      
 }
 
 function startCounter() {
@@ -142,8 +139,8 @@ function timeCounter() {
 // fs.writeFile('./stats.json', JSON.stringify(steps), err => {
   // if (err) console.log(err);
   // console.log(`${stepstats} stored.`)})
+
 function setOwnSudoku() {
-       
         let toNumbers = this.getJSONInputParseToArray();
         if (!this.inputDataChecker(toNumbers)) {
             return;
@@ -156,17 +153,13 @@ function setOwnSudoku() {
 function getJSONInputParseToArray() {
     inputValueArray = JSON.parse(document.getElementById("userValues").value);
     let toNumbers = inputValueArray.map((i) => Number(i));
-    console.log(toNumbers);
     return toNumbers;
 }
 
 function inputDataChecker(data) {
     for (var i = 0; i < data.length; ++i) {
-    console.log(data);
     if (data[i] > 0 && data[i] < 10) {
-        console.log(true);
     } else {
-        console.log(false);
         document.getElementById('wrongCharacterAlert').innerHTML = "Use numbers from 0 to 9, please";
         return false;
     }
@@ -177,7 +170,6 @@ function inputDataChecker(data) {
 function gridCleaner() {
     for (var i = 0; i < 81; ++i) {
         document.getElementById('C' + i).value = '';
-        console.log('kakuk');
       }   
 }
 
