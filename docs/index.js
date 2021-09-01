@@ -1,18 +1,17 @@
 function SudokuSolver() {
-	var puzzle_table = [];
+	let puzzle_table = [];
+	console.log(puzzle_table)
   /*
   * Check if the number is a legal candidate
   * for the given cell (by Sudoku rules).
   */
 	function check_candidate(num, row, col) {
     
-		for (var i = 0; i < 9; i++) {
-			var b_index = ((Math.floor(row / 3) * 3) + Math.floor(i / 3)) * 9 + (Math.floor(col / 3) * 3) + (i % 3);
+		for (let i = 0; i < 9; i++) {
+			let b_index = ((Math.floor(row / 3) * 3) + Math.floor(i / 3)) * 9 + (Math.floor(col / 3) * 3) + (i % 3);
 			if (num == puzzle_table[(row * 9) + i] ||
 				num == puzzle_table[col + (i * 9)] ||
 				num == puzzle_table[b_index]) {
-                 console.log(puzzle_table, puzzle_table[(row * 9) + i], puzzle_table[col + (i * 9)], puzzle_table[b_index] ) 
-                 console.log(num, row, col, b_index)
 				return false;
 			}
 		}
@@ -29,7 +28,7 @@ function SudokuSolver() {
 			return get_candidate(index + 1);
 		}
 
-		for (var i = 1; i <= 9; i++) {
+		for (let i = 1; i <= 9; i++) {
 			if (check_candidate(i, Math.floor(index / 9), index % 9)) {
 				puzzle_table[index] = i;
 				if (get_candidate(index + 1)) {
@@ -45,8 +44,8 @@ function SudokuSolver() {
   * Split result of puzzle into chunks by 9.
   */
 	function chunk_in_groups(arr) {
-		var result = [];
-		for (var i = 0; i < arr.length; i += 9) {
+		let result = [];
+		for (let i = 0; i < arr.length; i += 9) {
 			result.push(arr.slice(i, i + 9));
 		}
         console.log(result)
@@ -57,8 +56,8 @@ function SudokuSolver() {
   */
 	this.solve = function (puzzle, options) {
 		options = options || {};
-		var result = options.result || 'string';
-        console.log(puzzle, options)
+		let result = options.result || 'string';
+        
 		puzzle_table = puzzle.split('').map(function (v) { return isNaN(v) ? 0 : +v });
 
 		if (puzzle.length !== 81) return 'Puzzle is not valid.'
