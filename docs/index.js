@@ -61,7 +61,7 @@ function SudokuSolver() {
 		puzzle_table = puzzle.split('').map(function (v) { return isNaN(v) ? 0 : +v });
 
 		if (puzzle.length !== 81) return 'Puzzle is not valid.'
-		return !get_candidate(0) ? 'No solution found.' : result === 'chunks' ? chunk_in_groups(puzzle_table) : result === 'array' ? puzzle_table : puzzle_table.join('');
+		return  !get_candidate(0) ? 'No solution found.' : result === 'chunks' ? chunk_in_groups(puzzle_table) : result === 'array' ? puzzle_table : puzzle_table.join('');
 	}
 }
 

@@ -6,27 +6,27 @@ var currentArray = [];
 var stepCounter;
 
 function solve() {
-    let inputArray = this.getJSONInputParseToArray();
-    if (inputArray.length < 81) {
-        document.getElementById('solvetime').innerHTML = "Sudokus contain 81 fields. Invalid values"
-        return;
-    }
+  let countY = 0;
    let s = '';
    for (let i = 0; i < 81; ++i) {
    let y = document.getElementById('C' + i).value;
-   
+  
+   countY++;
+  
     if (y >= 1 && y <= 9) {
       s += '' + y;
     } else {
       s += '.';
     }
   }
-
+  if (countY < 81) {
+    return;
+  }
   let time_beg = new Date().getTime();
   let x = solver.solve(s);
   let t = (new Date().getTime() - time_beg) / 1000.0;
 
-  document.getElementById('runtime').innerHTML = 'The algorithm puzzle in ' + t + ' seconds ( ' + t * 1000.0 + ' ms ).';
+  document.getElementById('runtime').innerHTML = 'The algorithm solved puzzle in ' + t + ' seconds ( ' + t * 1000.0 + ' ms ).';
   s = '';
 
   for (let z = 0; z < 81; ++z) {
@@ -46,14 +46,14 @@ function set_9x9(str) {
       }
     }
   }
-  // currentArray = [...str].map(el => parseInt(el))
-  // showCurrentArray(currentArray)
+   currentArray = [...str].map(el => parseInt(el))
+   showCurrentArray(currentArray)
   setListeners()
 }
 
-// function showCurrentArray(arr) {
-//   document.getElementById("currArr").innerHTML = `Current values: ${arr}`;
-// }
+ function showCurrentArray(arr) {
+   document.getElementById("currArr").innerHTML = `Current values: ${arr}`;
+ }
 
 function draw_9x9() {
   
@@ -78,20 +78,19 @@ function draw_9x9() {
 
   s += '</table>';
   document.getElementById('9x9').innerHTML = s;
-  // let inp = document.URL;
-  // let set = false;
+   let inp = document.URL;
+   let set = false;
+    if (inp.indexOf('?') >= 0) {
+     let match = /[?&]puzzle=([^\s&]+)/.exec(inp);
+     if (match.length == 2 && match[1].length >= 81) {
+       set_9x9(match[1]);
+       set = true;
+     }
+   }
 
-  // if (inp.indexOf('?') >= 0) {
-  //   let match = /[?&]puzzle=([^\s&]+)/.exec(inp);
-  //   if (match.length == 2 && match[1].length >= 81) {
-  //     set_9x9(match[1]);
-  //     set = true;
-  //   }
-  // }
-
-  // if (!set) {
-  //   set_9x9('001700509573024106800501002700295018009400305652800007465080071000159004908007053');
-  // }
+   if (!set) {
+     set_9x9('001700509573024106800501002700295018009400305652800007465080071000159004908007053');
+   }
 
 
 }
@@ -122,7 +121,8 @@ function setPredefined() {
       this.time = new Date().getTime();
       console.log(this.time);
       array = [];
-      stepCounter = 0      
+      stepCounter = 0
+      
 }
 
 function startCounter() {
@@ -131,7 +131,7 @@ function startCounter() {
 
 function timeCounter() {
     let amount = (new Date().getTime() - this.time) / 1000.0;
-    document.getElementById('solvetime').innerHTML = 'Solved puzzle in ' + amount + ' seconds ( ' + amount * 1000.0 + ' ms ).';
+    document.getElementById('solvetime').innerHTML = 'You solved this puzzle in ' + amount + ' seconds ( ' + amount * 1000.0 + ' ms ).';
   s = '';
     
 }
@@ -142,12 +142,10 @@ function timeCounter() {
 
 function setOwnSudoku() {
         let toNumbers = this.getJSONInputParseToArray();
-        if (!this.inputDataChecker(toNumbers)) {
-            return;
-        } else {
+        this.inputDataChecker(toNumbers);
         this.gridCleaner();
         this.customValuesIntoGridWriter(toNumbers);  
-        }        
+             
 }         
           
 function getJSONInputParseToArray() {
@@ -163,8 +161,7 @@ function inputDataChecker(data) {
         document.getElementById('wrongCharacterAlert').innerHTML = "Use numbers from 0 to 9, please";
         return false;
     }
-}
-
+  }
 }
 
 function gridCleaner() {
@@ -181,6 +178,5 @@ function customValuesIntoGridWriter(numbersArray) {
         } else {
         document.getElementById('C' + j).value = numbersArray[j];
         }
-}
-
+    }
 }   
